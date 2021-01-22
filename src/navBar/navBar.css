@@ -1,0 +1,16 @@
+.divNavBarClass {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  border-color: rgb(54, 232, 238);
+  box-shadow: rgb(83, 82, 82);
+  /* border: darkcyan; */
+  background-color: rgb(54, 232, 238);
+  align-items: center;
+  justify-content: center;
+}
+
+/* .inputSearch {
+  margin-right: 20px;
+  width: 400px;
+} */

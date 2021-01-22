@@ -1,0 +1,16 @@
+.divClass {
+  height: fit-content;
+  width: 50%;
+  margin: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgb(83, 82, 82);
+  background-color: rgb(54, 232, 238);
+  align-items: center;
+  justify-content: center;
+}
+
+.Button {
+  color: beige;
+}
