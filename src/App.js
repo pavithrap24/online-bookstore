@@ -1,12 +1,13 @@
 import React from "react";
-import HomePage from "./homePage/homePage";
-// import NavBar from "./navBar/navBar";
+import { Provider } from "react-redux";
+import Page from "./containers/page/page";
+import store from "./store/configureStore";
 
 function App() {
   return (
-    <div className="App">
-      <HomePage />
-    </div>
+    <Provider store={store}>
+      <Page />
+    </Provider>
   );
 }
 
