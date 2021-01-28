@@ -4,7 +4,6 @@ import Book from "./book/book";
 
 const books = (props) => {
   const booksData = props.booksData;
-  console.log("books.js booksData ", booksData);
   const books = booksData.map((bookData) => {
     return (
       <Book
