@@ -1,5 +1,5 @@
 .divNavBarClass {
-  height: 50px;
+  height: 64px;
   display: flex;
   flex-direction: row;
   border-color: rgb(54, 232, 238);
@@ -14,3 +14,8 @@
   margin-right: 20px;
   width: 400px;
 } */
+
+.appBar {
+  align-items: center;
+  justify-content: center;
+}

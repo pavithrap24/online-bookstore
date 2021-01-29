@@ -5,15 +5,16 @@ const slice = createSlice({
   initialState: [],
   reducers: {
     search: (state, action) => {
-      const searchResults = state
-        .getState()
-        .books.filter((book) =>
-          String(book.title).includes(action.payload.query)
-        )
+      const searchResults = state.initialBooksData
+        .filter((book) => String(book.title).includes(action.payload.query))
         .map((booksData) => {
           return booksData;
         });
-      return { ...state, searchResults: searchResults };
+      const query = action.payload.query ? true : false;
+      return {
+        ...state,
+        ...{ searchResults: searchResults, searched: true, query: query },
+      };
     },
     initialSearch: (state, action) => {
       return {
@@ -24,11 +25,18 @@ const slice = createSlice({
     initialFetch: (state, action) => {
       return {
         ...state,
-        ...{ initialBooksData: action.payload.initialBooksData },
+        ...{ initialBooksData: action.payload.initialBooksData, cartItems: [] },
+      };
+    },
+    addToCart: (state, action) => {
+      const item = [...state.cartItems, action.payload.bookID];
+      return {
+        ...state,
+        ...{ cartItems: item },
       };
     },
   },
 });
 
-export const { search, initialFetch, initialSearch } = slice.actions;
+export const { search, initialFetch, initialSearch, addToCart } = slice.actions;
 export default slice.reducer;

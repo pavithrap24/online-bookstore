@@ -1,55 +1,56 @@
 import React, { useEffect } from "react";
 import Books from "../books/books";
-import { search, initialFetch, initialSearch } from "../../store/books";
+import { initialFetch, addToCart } from "../../store/books";
 import { useDispatch, useSelector } from "react-redux";
 
 function HomePage() {
   const dispatch = useDispatch();
 
-  const { initialBooksData } = useSelector((state) => state.booksReducer);
-  const { searchResults } = useSelector((state) => state.booksReducer);
+  const { initialBooksData, searchResults, searched, query } = useSelector(
+    (state) => state.booksReducer
+  );
 
-  async function getApiData() {
-    const response = await fetch(
-      "https://s3-ap-southeast-1.amazonaws.com/he-public-data/books8f8fe52.json",
-      {
-        crossDomain: true,
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-    const jsonData = await response.json();
-    const initialBooksData = jsonData
-      .sort((books) => books.average_rating)
-      .map((bookData) => {
-        return bookData;
-      });
-    dispatch(initialFetch({ initialBooksData: initialBooksData }));
-  }
   useEffect(() => {
+    async function getApiData() {
+      const response = await fetch(
+        "https://api.jsonbin.io/b/6012e3aac9033f74c42796f4",
+        {
+          crossDomain: true,
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      const jsonData = await response.json();
+      const initialBooksData = jsonData
+        .sort((books) => books.average_rating)
+        .map((bookData) => {
+          return bookData;
+        });
+      dispatch(initialFetch({ initialBooksData: initialBooksData }));
+    }
     getApiData();
-  }, []);
+  }, [dispatch]);
 
-  const addToCartClickHandler = () => {
-    // setCartCount((prevState) => ({
-    //   cartCount: prevState.cartCount + 1,
-    // }));
+  const addToCartClickHandler = (bookID) => {
+    dispatch(addToCart({ bookID: bookID }));
   };
 
   return (
     <div>
-      {searchResults ? (
+      {searchResults && searchResults.length > 0 ? (
         <Books
           booksData={searchResults}
           addToCart={() => addToCartClickHandler()}
         />
+      ) : searched && query ? (
+        <p>NO search results..</p>
       ) : initialBooksData ? (
         <Books
           booksData={initialBooksData}
-          addToCart={() => addToCartClickHandler()}
+          addToCart={(bookID) => addToCartClickHandler(bookID)}
         />
       ) : (
-        <p>No Books</p>
+        <p>Loading..</p>
       )}
     </div>
   );

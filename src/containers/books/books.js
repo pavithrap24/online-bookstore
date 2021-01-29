@@ -8,6 +8,7 @@ const books = (props) => {
     return (
       <Book
         key={bookData.bookID}
+        bookID={bookData.bookID}
         title={bookData.title}
         authors={bookData.authors}
         avgRating={bookData.average_rating}
