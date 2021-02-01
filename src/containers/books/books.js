@@ -17,6 +17,7 @@ const books = (props) => {
         ratingsCount={bookData.ratings_count}
         price={bookData.price}
         addToCart={props.addToCart}
+        bookData={bookData}
       />
     );
   });

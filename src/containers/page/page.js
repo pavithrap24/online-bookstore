@@ -3,7 +3,7 @@ import React from "react";
 import HomePage from "../homePage/homePage";
 import NavBar from "../navBar/navBar";
 
-const theme = createMuiTheme({
+const NavBarTheme = createMuiTheme({
   palette: {
     primary: {
       main: "rgb(54, 232, 238)",
@@ -14,7 +14,7 @@ const theme = createMuiTheme({
 function page(props) {
   return (
     <div>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={NavBarTheme}>
         <NavBar />
       </ThemeProvider>
       <HomePage />

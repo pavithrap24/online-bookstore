@@ -42,7 +42,10 @@ function book(props) {
       <label>
         <i>Price: </i>₹{props.price}
       </label>
-      <Button variant="contained" onClick={() => props.addToCart(props.bookID)}>
+      <Button
+        variant="contained"
+        onClick={() => props.addToCart(props.bookData)}
+      >
         Add to Cart
       </Button>
     </div>

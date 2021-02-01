@@ -5,9 +5,11 @@ import store from "./store/configureStore";
 
 function App() {
   return (
-    <Provider store={store}>
-      <Page />
-    </Provider>
+    <React.StrictMode>
+      <Provider store={store}>
+        <Page />
+      </Provider>
+    </React.StrictMode>
   );
 }
 
